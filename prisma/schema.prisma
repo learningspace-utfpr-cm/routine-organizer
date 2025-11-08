@@ -1,15 +1,96 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
-  output   = "../app/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+// Enums para papéis do usuário
+enum Role {
+  STUDENT @map("student") // Aluno
+  TEACHER @map("teacher") // Professor/Tutor
+
+  @@map("roles")
+}
+
+model User {
+  id               String               @id @default(cuid())
+  email            String               @unique
+  name             String?
+  role             Role // Papel do usuário (STUDENT ou TEACHER)
+  passwordHash     String?              @map("password_hash")
+  managedStudents  TeacherStudentLink[] @relation("TeacherLink")
+  createdRotinas   Rotina[]             @relation("CreatorToRotina")
+  managingTeachers TeacherStudentLink[] @relation("StudentLink")
+  assignedRotinas  Rotina[]             @relation("AlunoToRotina")
+  registros        RegistroDesempenho[] @relation("AlunoToRegistro")
+
+  @@map("users")
+}
+
+// Join table
+// Gerencia a relação N:M entre Professores e Alunos
+model TeacherStudentLink {
+  // Relação com o Professor
+  teacherId String @map("teacher_id")
+  teacher   User   @relation("TeacherLink", fields: [teacherId], references: [id], onDelete: Cascade)
+
+  // Relação com o Aluno
+  studentId String @map("student_id")
+  student   User   @relation("StudentLink", fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@id([teacherId, studentId])
+  @@map("teacher_student_links")
+}
+
+// Modelo da Rotina (O conjunto de atividades)
+model Rotina {
+  id         String      @id @default(cuid())
+  title      String
+  creatorId  String      @map("creator_id")
+  creator    User        @relation("CreatorToRotina", fields: [creatorId], references: [id], onDelete: Cascade)
+  studentId  String      @map("student_id")
+  student    User        @relation("AlunoToRotina", fields: [studentId], references: [id], onDelete: Cascade)
+  atividades Atividade[] @relation("RotinaToAtividade")
+
+  @@map("rotinas")
+}
+
+enum FeedbackSoundType {
+  SUCCESS
+  NEUTRAL_TONE
+  ALERT_BUZZ
+
+  @@map("feedback_sound_types")
+}
+
+// O cartão virtual
+model Atividade {
+  id                String               @id @default(cuid())
+  title             String
+  imageUrl          String               @map("image_url")
+  order             Int
+  durationInSeconds Int?                 @map("duration_in_seconds")
+  feedbackSoundType FeedbackSoundType?   @map("feedback_sound_type")
+  rotinaId          String
+  rotina            Rotina               @relation("RotinaToAtividade", fields: [rotinaId], references: [id], onDelete: Cascade)
+  registros         RegistroDesempenho[] @relation("AtividadeToRegistro")
+
+  @@map("atividades")
+}
+
+// Modelo de Avaliação
+model RegistroDesempenho {
+  id               String    @id @default(cuid())
+  completedAt      DateTime  @default(now())
+  timeTakenSeconds Int?      @map("time_taken_seconds")
+  status           String // Ex: "COMPLETED", "SKIPPED"
+  studentId        String    @map("student_id")
+  student          User      @relation("AlunoToRegistro", fields: [studentId], references: [id], onDelete: Cascade)
+  atividadeId      String    @map("atividade_id")
+  atividade        Atividade @relation("AtividadeToRegistro", fields: [atividadeId], references: [id], onDelete: Cascade)
+
+  @@map("registro_desempenho")
 }
