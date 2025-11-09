@@ -12,6 +12,8 @@ export async function GET(req: Request) {
       return new NextResponse("Acesso não autorizado", { status: 403 }); // 403 Forbidden
     }
 
+    const teacherId = session.user.id;
+
     const students = await prisma.user.findMany({
       where: {
         role: Role.STUDENT,
@@ -21,13 +23,22 @@ export async function GET(req: Request) {
         name: true,
         email: true,
         role: true,
+        managingTeachers: {
+          where: { teacherId },
+          select: { teacherId: true }
+        }
       },
       orderBy: {
         name: "asc",
       },
     });
 
-    return NextResponse.json(students, { status: 200 });
+   const studentsWithLink = students.map(s => ({
+      ...s,
+      isLinked: s.managingTeachers.length > 0
+    }));
+
+    return NextResponse.json(studentsWithLink, { status: 200 });
   } catch (error) {
     console.error("ERRO AO BUSCAR ALUNOS:", error);
     return new NextResponse("Erro interno do servidor", { status: 500 });

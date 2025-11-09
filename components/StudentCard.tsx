@@ -8,12 +8,12 @@ import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 
 interface StudentCardProps {
-  student: Partial<User>;
+  student: Partial<User> & { isLinked?: boolean };
 }
 
 const StudentCard = ({ student }: StudentCardProps) => {
   const { data: session } = useSession();
-  const [linked, setLinked] = useState(false);
+  const [linked, setLinked] = useState(student.isLinked);
 
   const handleLink = async (studentId?: string) => {
     const beingLinked = !linked;
