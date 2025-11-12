@@ -13,3 +13,6 @@ Crianças neurodivergentes na faixa etária de 4-10 anos.
 
 ## Mapa Conceitual
 <img width="681" height="441" alt="image" src="https://github.com/user-attachments/assets/c0f5f65b-58a2-4bba-9ecf-57e193a2700e" />
+
+## Modelo Instrucional
+<img width="927" height="772" alt="modeloInstrucional drawio" src="https://github.com/user-attachments/assets/775594c3-42c8-4389-afb9-c08ffca14fa0" />
