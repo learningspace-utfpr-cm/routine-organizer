@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ForbiddenPage from "@/components/ForbiddenPage";
 import VirtualCardList from "@/components/VirtualCardList";
 import VirtualCardListSkeleton from "@/components/VirtualCardListSkeleton";
-import { VirtualCard } from "@/components/VirtualCardTypes";
+import { VirtualCard } from "@/app/(private)/dashboard/professor/cartoes-virtuais/types/VirtualCardTypes";
+import { toast } from "react-toastify";
+import VirtualCardForm from "@/components/VirtualCardForm";
 
 const CartoesVirtuaisPage = () => {
   const [cards, setCards] = useState<VirtualCard[]>([]);
@@ -12,30 +14,59 @@ const CartoesVirtuaisPage = () => {
   const [error, setError] = useState("");
   const [isForbidden, setIsForbidden] = useState(false);
 
-  useEffect(() => {
-    async function fetchVirtualCards() {
+  type FetchVirtualCardsOptions = {
+    showSkeleton?: boolean;
+    silentError?: boolean;
+  };
+
+  const fetchVirtualCards = useCallback(
+    async (options: FetchVirtualCardsOptions = {}) => {
+      const { showSkeleton = false, silentError = false } = options;
+
+      if (showSkeleton) {
+        setLoading(true);
+      }
+
+      if (!silentError) {
+        setError("");
+      }
+
       try {
         const res = await fetch("/api/cartoes-virtuais");
 
         if (res.status === 403) {
           setIsForbidden(true);
+          return;
         }
 
         if (!res.ok) {
           throw new Error("Falha ao carregar cartões virtuais");
         }
 
-        const data = await res.json();
+        const data = (await res.json()) as VirtualCard[];
         setCards(data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err) {
+        const message =
+          err instanceof Error
+            ? err.message
+            : "Falha ao carregar cartões virtuais";
+        if (silentError) {
+          toast.error(message);
+        } else {
+          setError(message);
+        }
       } finally {
-        setLoading(false);
+        if (showSkeleton) {
+          setLoading(false);
+        }
       }
-    }
+    },
+    []
+  );
 
-    fetchVirtualCards();
-  }, []);
+  useEffect(() => {
+    fetchVirtualCards({ showSkeleton: true });
+  }, [fetchVirtualCards]);
 
   if (isForbidden) {
     return (
@@ -53,7 +84,13 @@ const CartoesVirtuaisPage = () => {
   return (
     <div className="p-6">
       <div className="space-y-4">
-        <h1 className="text-2xl font-bold">Lista de Cartões Virtuais</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-bold">Lista de Cartões Virtuais</h1>
+          <VirtualCardForm
+            onForbidden={() => setIsForbidden(true)}
+            onSuccess={() => fetchVirtualCards({ silentError: true })}
+          />
+        </div>
         {loading ? (
           <VirtualCardListSkeleton />
         ) : (

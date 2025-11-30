@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { VirtualCard } from "../app/(private)/dashboard/professor/cartoes-virtuais/types/VirtualCardTypes";
+import { Clock } from "lucide-react";
 
 interface VirtualCardCardProps {
   card: VirtualCard;
@@ -8,19 +9,11 @@ interface VirtualCardCardProps {
 const VirtualCardCard = ({ card }: VirtualCardCardProps) => {
   return (
     <Card className="p-5 h-full flex flex-col gap-3">
-      <div className="flex justify-between items-start text-xs text-gray-500">
-        <div>
-          <p className="uppercase tracking-wide">Rotina</p>
-          <p className="text-sm font-semibold text-gray-800">
-            {card.rotina.title}
-          </p>
-          <p className="text-gray-600">
-            Aluno: {card.rotina.student?.name || "Sem nome"}
-          </p>
-        </div>
-        <span className="px-2 py-1 rounded-full bg-gray-100 font-semibold text-gray-700">
-          #{card.order}
-        </span>
+      <div className="text-xs text-gray-500">
+        <p className="uppercase tracking-wide">Criado por</p>
+        <p className="text-sm font-semibold text-gray-800">
+          {card.creator.name || "Sem nome"}
+        </p>
       </div>
 
       <div>
@@ -36,18 +29,18 @@ const VirtualCardCard = ({ card }: VirtualCardCardProps) => {
         )}
       </div>
 
-      <div className="flex flex-wrap gap-2 text-xs text-gray-700">
-        {card.estimatedTime !== null && (
-          <span className="px-3 py-1 rounded-md bg-gray-100">
-            Tempo estimado: {card.estimatedTime} min
+      {card.estimatedTime !== null && card.estimatedTime > 0 && (
+        <div className="flex flex-wrap gap-2">
+          <span className="px-3 py-1 rounded-md flex items-center gap-1">
+            {Array.from({ length: card.estimatedTime }).map((_, index) => (
+              <Clock key={index} className="h-5 w-5" />
+            ))}
+            <span className="sr-only">
+              Tempo estimado: {card.estimatedTime} unidades
+            </span>
           </span>
-        )}
-        {card.feedbackSoundType && (
-          <span className="px-3 py-1 rounded-md bg-gray-100">
-            Feedback: {card.feedbackSoundType}
-          </span>
-        )}
-      </div>
+        </div>
+      )}
     </Card>
   );
 };

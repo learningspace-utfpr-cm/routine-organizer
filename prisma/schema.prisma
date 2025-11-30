@@ -55,16 +55,17 @@ enum Role {
 }
 
 model User {
-  id               String               @id @default(cuid())
-  email            String               @unique
-  name             String?
-  role             Role // Papel do usuário (STUDENT ou TEACHER)
-  passwordHash     String?              @map("password_hash")
-  managedStudents  TeacherStudentLink[] @relation("TeacherLink")
-  createdRotinas   Rotina[]             @relation("CreatorToRotina")
-  managingTeachers TeacherStudentLink[] @relation("StudentLink")
-  assignedRotinas  Rotina[]             @relation("AlunoToRotina")
-  registros        RegistroDesempenho[] @relation("AlunoToRegistro")
+  id                String               @id @default(cuid())
+  email             String               @unique
+  name              String?
+  role              Role // Papel do usuário (STUDENT ou TEACHER)
+  passwordHash      String?              @map("password_hash")
+  managedStudents   TeacherStudentLink[] @relation("TeacherLink")
+  createdRotinas    Rotina[]             @relation("CreatorToRotina")
+  managingTeachers  TeacherStudentLink[] @relation("StudentLink")
+  assignedRotinas   Rotina[]             @relation("AlunoToRotina")
+  registros         RegistroDesempenho[] @relation("AlunoToRegistro")
+  createdAtividades Atividade[]          @relation("CreatorToAtividade")
 
   accounts Account[]
   sessions Session[]
@@ -89,36 +90,25 @@ model TeacherStudentLink {
 
 // Modelo da Rotina (O conjunto de atividades)
 model Rotina {
-  id         String      @id @default(cuid())
-  title      String
-  creatorId  String      @map("creator_id")
-  creator    User        @relation("CreatorToRotina", fields: [creatorId], references: [id], onDelete: Cascade)
-  studentId  String      @map("student_id")
-  student    User        @relation("AlunoToRotina", fields: [studentId], references: [id], onDelete: Cascade)
-  atividades Atividade[] @relation("RotinaToAtividade")
+  id        String @id @default(cuid())
+  title     String
+  creatorId String @map("creator_id")
+  creator   User   @relation("CreatorToRotina", fields: [creatorId], references: [id], onDelete: Cascade)
+  studentId String @map("student_id")
+  student   User   @relation("AlunoToRotina", fields: [studentId], references: [id], onDelete: Cascade)
 
   @@map("rotinas")
 }
 
-enum FeedbackSoundType {
-  SUCCESS
-  NEUTRAL_TONE
-  ALERT_BUZZ
-
-  @@map("feedback_sound_types")
-}
-
 // O cartão virtual
 model Atividade {
-  id                String               @id @default(cuid())
-  title             String
-  imageUrl          String               @map("image_url")
-  order             Int
-  estimatedTime     Int?                 @map("estimated_time")
-  feedbackSoundType FeedbackSoundType?   @map("feedback_sound_type")
-  rotinaId          String
-  rotina            Rotina               @relation("RotinaToAtividade", fields: [rotinaId], references: [id], onDelete: Cascade)
-  registros         RegistroDesempenho[] @relation("AtividadeToRegistro")
+  id            String               @id @default(cuid())
+  title         String
+  imageUrl      String               @map("image_url")
+  estimatedTime Int?                 @map("estimated_time")
+  creatorId     String               @map("creator_id")
+  creator       User                 @relation("CreatorToAtividade", fields: [creatorId], references: [id], onDelete: Cascade)
+  registros     RegistroDesempenho[] @relation("AtividadeToRegistro")
 
   @@map("atividades")
 }
