@@ -127,7 +127,7 @@ model Atividade {
   creator       User                 @relation("CreatorToAtividade", fields: [creatorId], references: [id], onDelete: Cascade)
   registros     RegistroDesempenho[] @relation("AtividadeToRegistro")
   rotinaId      String?               @map("rotina_id")
-  rotina        Rotina?               @relation("RotinaToAtividade", fields: [rotinaId], references: [id], onDelete: Cascade)
+  rotina        Rotina?               @relation("RotinaToAtividade", fields: [rotinaId], references: [id], onDelete: SetNull)
   dayPeriod     DayPeriod             @map("day_period")
 
   @@map("atividades")
