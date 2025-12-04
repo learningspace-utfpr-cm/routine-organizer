@@ -340,17 +340,7 @@ const StudentPEI = () => {
     <div className="p-6 space-y-4 relative min-h-[500px]">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Minha Rotina</h1>
-        {!started && !finished && (
-          <Button
-            size="lg"
-            className="bg-emerald-600 hover:bg-emerald-500 text-lg rounded-xl shadow-md transition-all hover:scale-105"
-            onClick={handleStart}
-          >
-            <PlayIcon className="h-10 w-10" />
-          </Button>
-        )}
       </div>
-
       {currentActivity && started && !showReward && (
         <div className="flex flex-col gap-6 lg:flex-row">
           <div className="flex-1 space-y-4">
@@ -377,6 +367,17 @@ const StudentPEI = () => {
       {showReward && <RewardOverlay />}
 
       {finished && <SuccessPage />}
+      <div className="flex items-center justify-center py-2">
+        {!started && !finished && (
+          <Button
+            size="icon-lg"
+            className="w-[120px] h-[60px] bg-emerald-600 hover:bg-emerald-500 text-lg rounded-xl shadow-md transition-all hover:scale-101 hover:cursor-pointer"
+            onClick={handleStart}
+          >
+            <PlayIcon className="h-10 w-10" />
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

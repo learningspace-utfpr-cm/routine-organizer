@@ -51,7 +51,7 @@ const ActivityList = ({ atividades }: ActivityListProps) => {
         Atividades de hoje (em ordem):
       </p>
       <Carousel className="w-full" opts={{ align: "start" }}>
-        <CarouselContent>
+        <CarouselContent className="mx-2">
           {atividades.map((atividade, idx) => (
             <CarouselItem
               key={atividade.id}
