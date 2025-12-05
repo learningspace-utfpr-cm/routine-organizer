@@ -37,11 +37,10 @@
 
 - **Ação do Professor:** Pede para o aluno selecionar no software o período do dia discutido na Etapa 1 (ex: Manhã).
 - **No Software:**
-  1.  **Seleção:** O aluno clica em "Manhã".
-  2.  **Atividade Prática:** O software mostra um cartão, por exemplo, "Beber Água".
-  3.  **Ação Real:** O aluno levanta-se, bebe um gole de água (ação real), volta e marca "Concluído" no software.
-  4.  **Feedback:** O aluno ouve o som de sucesso e vê o próximo cartão aparecer automaticamente.
-  5.  **Mediação de Tempo:** Se aparecer o **Timer**, o professor alerta: "Olha o ponteiro! Temos que terminar a tarefa antes dele chegar no final."
+  1.  **Atividade Prática:** O software mostra um cartão, por exemplo, "Beber Água".
+  2.  **Ação Real:** O aluno levanta-se, bebe um gole de água (ação real), volta e marca "Concluído" no software.
+  3.  **Feedback:** O aluno ouve o som de sucesso e vê o próximo cartão aparecer automaticamente.
+  4.  **Mediação de Tempo:** Se aparecer o **Timer**, o professor alerta: "Olha o ponteiro! Temos que terminar a tarefa antes dele chegar no final."
 
 ### Etapa 4: Fechamento - O Quadro de Medalhas
 
