@@ -142,14 +142,14 @@ const CurrentActivityCard = ({
 
       <div className="flex gap-3">
         <Button
-          className="bg-amber-500 hover:bg-amber-400 text-white flex-1 text-lg"
+          className="bg-amber-500 hover:bg-amber-400 text-white flex-1 text-lg h-14"
           size="lg"
           onClick={onSkip}
         >
           <SkipForward className="mr-2 h-5 w-5" />
         </Button>
         <Button
-          className="bg-emerald-600 hover:bg-emerald-500 text-white flex-1 text-lg"
+          className="bg-emerald-600 hover:bg-emerald-500 text-white flex-1 text-lg h-14"
           size="lg"
           onClick={handleComplete}
         >
