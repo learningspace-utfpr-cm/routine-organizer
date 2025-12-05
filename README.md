@@ -12,7 +12,8 @@ Crianças neurodivergentes na faixa etária de 4-10 anos.
 - **Feedback Reforçador Imediato**: O reforço positivo (auditivo e visual) deve ser imediato e consistente após a conclusão correta, incentivando a repetição do comportamento desejado.
 
 ## Mapa Conceitual
-<img width="681" height="441" alt="image" src="https://github.com/user-attachments/assets/c0f5f65b-58a2-4bba-9ecf-57e193a2700e" />
+<img width="734" height="442" alt="image" src="https://github.com/user-attachments/assets/1de0740f-b882-47cf-be56-878b27943a21" />
+
 
 ## Modelo Instrucional
 ### Link para Modelo
