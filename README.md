@@ -1,10 +1,13 @@
 ## Objetivo
+
 Fazer com que crianças neurodivergentes, que possuem dificuldade no aprendizado de rotinas, sintam mais facilidade no seu dia a dia.
 
 ## Público-alvo
+
 Crianças neurodivergentes na faixa etária de 4-10 anos.
 
 ## Requisitos de aprendizagem
+
 - **Sinalização Explícita da Transição**: O fim de uma atividade (sinal sonoro e visual) deve ser imediatamente seguido pelo destaque da próxima. Isso ensina a Transição Cartões de forma segura.
 - **Suporte à Comunicação Aumentativa**: O OA deve suportar o uso de imagens para a representação das atividades, facilitando a compreensão.
 - **Medição Temporal Concreta**: O tempo alocado para a tarefa (Timer) deve ser representado visualmente (ponteiro) de forma concreta, ajudando o aluno a internalizar a passagem do tempo.
@@ -12,14 +15,35 @@ Crianças neurodivergentes na faixa etária de 4-10 anos.
 - **Feedback Reforçador Imediato**: O reforço positivo (auditivo e visual) deve ser imediato e consistente após a conclusão correta, incentivando a repetição do comportamento desejado.
 
 ## Mapa Conceitual
+
 <img width="734" height="442" alt="image" src="https://github.com/user-attachments/assets/1de0740f-b882-47cf-be56-878b27943a21" />
 
-
 ## Modelo Instrucional
+
 ### Link para Modelo
+
 https://drive.google.com/file/d/1lK0rp8DiDv3jrDvKlzr48NFV3PE_2BDy/view?usp=sharing
 
 <img width="927" height="772" alt="modeloInstrucional drawio" src="https://github.com/user-attachments/assets/775594c3-42c8-4389-afb9-c08ffca14fa0" />
 
 ## Plano de Aula
+
 Está disponível no arquivo `plano-de-aula-rotina.md`
+
+## Licença
+
+Este objeto de aprendizagem está licenciado sob  
+[CC BY 4.0 — Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/).
+
+Você é livre para:
+
+- Compartilhar — copiar e redistribuir o material
+- Adaptar — remixar, transformar e criar a partir do material
+- Para qualquer finalidade, mesmo comercial
+
+Desde que atribua o crédito apropriado.
+
+[![CC BY 4.0][cc-by-shield]][cc-by]
+
+[cc-by]: https://creativecommons.org/licenses/by/4.0/
+[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
