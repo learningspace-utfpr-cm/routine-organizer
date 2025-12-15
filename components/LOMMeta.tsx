@@ -6,8 +6,22 @@ export default function LOMMeta() {
     description:
       "Objeto de aprendizagem interativo que apresenta cartões de rotina com temporizadores ilustrativos, reforço sonoro e feedback visual",
     interactivityType: "active",
+    inLanguage: "pt-BR",
+    keywords: [
+      "objeto de aprendizagem",
+      "rotina",
+      "educação inclusiva",
+      "neurodiversidade",
+      "TEA",
+      "aprendizagem visual",
+    ],
     learningResourceType: "educational game",
-    educationalLevel: ["Educação Infantil", "Ensino Fundamental I"],
+    educationalUse: "practice",
+    coverage: ["Educação Infantil", "Ensino Fundamental I"],
+    audience: {
+      "@type": "EducationalAudience",
+      educationalRole: "student",
+    },
     author: [
       {
         "@type": "Person",
@@ -22,7 +36,6 @@ export default function LOMMeta() {
     ],
     version: "1.0",
     license: "https://creativecommons.org/licenses/by/4.0/",
-    educationalUse: "practice",
   };
 
   return (

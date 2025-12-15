@@ -1,0 +1,37 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "LearningResource",
+  "name": "Rotinas Ilustradas – Objeto de Aprendizagem para Crianças Neurodivergentes",
+  "description": "Objeto de aprendizagem interativo que apresenta cartões de rotina com temporizadores ilustrativos, reforço sonoro e feedback visual",
+  "interactivityType": "active",
+  "inLanguage": "pt-BR",
+  "keywords": [
+    "objeto de aprendizagem",
+    "rotina",
+    "educação inclusiva",
+    "neurodiversidade",
+    "TEA",
+    "aprendizagem visual"
+  ],
+  "learningResourceType": "educational game",
+  "educationalUse": "practice",
+  "coverage": ["Educação Infantil", "Ensino Fundamental I"],
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "student"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Eduardo Knabben de Tiyo",
+      "affiliation": "UTFPR - Universidade Tecnológica Federal do Paraná"
+    },
+    {
+      "@type": "Person",
+      "name": "Victor Henrique Gasparoto de Almeida",
+      "affiliation": "UTFPR - Universidade Tecnológica Federal do Paraná"
+    }
+  ],
+  "version": "1.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}
