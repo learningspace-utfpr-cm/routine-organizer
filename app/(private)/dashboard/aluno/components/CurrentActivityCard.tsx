@@ -102,6 +102,9 @@ const CurrentActivityCard = ({
           <p className="text-xs uppercase text-gray-500">
             Atividade {currentIndex + 1} de {totalCount}
           </p>
+          <div className="flex space-x-4 items-center mt-1 mb-2">
+            <h2 className="text-xl font-semibold">{activity.title}</h2>
+          </div>
           {renderClocks(activity.estimatedTime)}
         </div>
       </div>
