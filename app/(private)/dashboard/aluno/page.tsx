@@ -1,9 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { JSX, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { TrophyIcon, PlayIcon } from "lucide-react";
+import {
+  TrophyIcon,
+  PlayIcon,
+  MoonIcon,
+  SunIcon,
+  SunriseIcon,
+} from "lucide-react";
 import { toast } from "react-toastify";
 import { Howl } from "howler";
 import CurrentActivityCard from "./components/CurrentActivityCard";
@@ -27,6 +33,12 @@ type Rotina = {
   dateOfRealization: string | null;
   atividades: Atividade[];
   status?: string;
+};
+
+const dayPeriodIcons: Record<string, JSX.Element> = {
+  MORNING: <SunriseIcon className="h-40 w-40 text-yellow-400" />,
+  AFTERNOON: <SunIcon className="h-40 w-40 text-orange-400" />,
+  EVENING: <MoonIcon className="h-40 w-40 text-blue-400" />,
 };
 
 const StudentPEI = () => {
@@ -345,11 +357,14 @@ const StudentPEI = () => {
             />
             {renderTrophies(trophyQuantity)}
           </div>
-          {nextActivity && (
-            <div className="lg:w-[320px]">
-              <NextActivityPreview activity={nextActivity} />
-            </div>
-          )}
+          <div className="flex flex-col items-center gap-10">
+            {nextActivity && (
+              <div className="lg:w-[320px]">
+                <NextActivityPreview activity={nextActivity} />
+              </div>
+            )}
+            {dayPeriodIcons[currentActivity.dayPeriod]}
+          </div>
         </div>
       )}
 

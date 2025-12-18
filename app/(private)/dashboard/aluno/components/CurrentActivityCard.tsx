@@ -1,18 +1,10 @@
 "use client";
 
-import {
-  Clock,
-  MoonIcon,
-  SkipForward,
-  SunIcon,
-  SunriseIcon,
-  Trophy,
-} from "lucide-react";
+import { Clock, SkipForward, Trophy } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import TimerIndicator from "./TimerIndicator";
 import confetti from "canvas-confetti";
-import { JSX } from "react";
 
 export type CurrentActivityProps = {
   activity: {
@@ -28,12 +20,6 @@ export type CurrentActivityProps = {
   remainingSeconds: number | null;
   onSkip: () => void;
   onComplete: () => void;
-};
-
-const dayPeriodIcons: Record<string, JSX.Element> = {
-  MORNING: <SunriseIcon className="h-7 w-7 text-yellow-400" />,
-  AFTERNOON: <SunIcon className="h-7 w-7 text-orange-400" />,
-  EVENING: <MoonIcon className="h-7 w-7 text-blue-400" />,
 };
 
 const renderClocks = (count: number | null | undefined) => {
@@ -116,10 +102,6 @@ const CurrentActivityCard = ({
           <p className="text-xs uppercase text-gray-500">
             Atividade {currentIndex + 1} de {totalCount}
           </p>
-          <div className="flex space-x-4 items-center mt-1 mb-2">
-            <h2 className="text-xl font-semibold">{activity.title}</h2>
-            {dayPeriodIcons[activity.dayPeriod]}
-          </div>
           {renderClocks(activity.estimatedTime)}
         </div>
       </div>
