@@ -1,18 +1,9 @@
 "use client";
 
-import { JSX, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  Trophy,
-  Star,
-  Sparkles,
-  TrophyIcon,
-  PlayIcon,
-  SunriseIcon,
-  SunIcon,
-  MoonIcon,
-} from "lucide-react";
+import { TrophyIcon, PlayIcon } from "lucide-react";
 import { toast } from "react-toastify";
 import { Howl } from "howler";
 import CurrentActivityCard from "./components/CurrentActivityCard";
@@ -364,7 +355,7 @@ const StudentPEI = () => {
 
       {!started && !finished && <ActivityList atividades={rotina.atividades} />}
 
-      {showReward && <RewardOverlay />}
+      {showReward && <RewardOverlay activityName={currentActivity?.title} />}
 
       {finished && <SuccessPage />}
       <div className="flex items-center justify-center py-2">

@@ -30,7 +30,7 @@ const SuccessPage = ({ onReset }: SuccessPageProps) => {
       }
 
       const particleCount = 50 * (timeLeft / duration);
-      
+
       confetti({
         ...defaults,
         particleCount,
@@ -50,7 +50,6 @@ const SuccessPage = ({ onReset }: SuccessPageProps) => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[90vh] p-4 text-center space-y-8 animate-in fade-in zoom-in duration-500">
-      
       <div className="space-y-2">
         <h1 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 drop-shadow-sm uppercase tracking-wider">
           Vitória!
@@ -62,42 +61,46 @@ const SuccessPage = ({ onReset }: SuccessPageProps) => {
 
       <div className="relative group">
         <div className="absolute inset-0 bg-yellow-400/20 blur-3xl rounded-full scale-150 animate-pulse" />
-        
-        <Trophy 
+
+        <Trophy
           strokeWidth={1}
-          className="w-64 h-64 md:w-80 md:h-80 text-yellow-400 drop-shadow-2xl filter transform transition-transform duration-700 hover:scale-110 hover:rotate-6" 
+          className="w-64 h-64 md:w-80 md:h-80 text-yellow-400 drop-shadow-2xl filter transform transition-transform duration-700 hover:scale-110 hover:rotate-6"
         />
-        
-        <Star className="absolute top-0 right-10 w-12 h-12 text-yellow-300 animate-bounce fill-yellow-300" style={{ animationDelay: '0.1s' }} />
-        <Star className="absolute bottom-10 left-0 w-8 h-8 text-yellow-500 animate-pulse fill-yellow-500" style={{ animationDelay: '0.3s' }} />
-        <Star className="absolute top-20 -left-4 w-10 h-10 text-amber-300 animate-bounce fill-amber-300" style={{ animationDelay: '0.5s' }} />
+
+        <Star
+          className="absolute top-0 right-10 w-12 h-12 text-yellow-300 animate-bounce fill-yellow-300"
+          style={{ animationDelay: "0.1s" }}
+        />
+        <Star
+          className="absolute bottom-10 left-0 w-8 h-8 text-yellow-500 animate-pulse fill-yellow-500"
+          style={{ animationDelay: "0.3s" }}
+        />
+        <Star
+          className="absolute top-20 -left-4 w-10 h-10 text-amber-300 animate-bounce fill-amber-300"
+          style={{ animationDelay: "0.5s" }}
+        />
       </div>
 
-      <div className={`transition-all duration-1000 transform ${showReward ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div
+        className={`transition-all duration-1000 transform ${
+          showReward ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         <Card className="bg-gradient-to-br from-amber-900 to-amber-700 border-4 border-amber-600 p-6 rounded-3xl shadow-xl max-w-sm mx-auto relative overflow-hidden group hover:scale-105 transition-transform cursor-pointer">
-            <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine" />
-            
-            <div className="flex items-center gap-4 relative z-10">
-                <div className="text-6xl filter drop-shadow-lg">
-                    🍫
-                </div>
-                <div className="text-left">
-                    <h3 className="text-amber-100 font-bold text-lg uppercase tracking-wide">Recompensa Desbloqueada</h3>
-                    <p className="text-amber-200 text-sm font-medium">Você merece esse chocolate!</p>
-                </div>
-            </div>
-        </Card>
-      </div>
+          <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine" />
 
-      <div className="pt-8">
-        <Button 
-          size="lg" 
-          onClick={onReset}
-          className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xl px-12 py-8 rounded-full shadow-lg hover:shadow-emerald-500/50 transition-all active:scale-95"
-        >
-          <Home className="mr-3 w-6 h-6" />
-          Voltar ao Início
-        </Button>
+          <div className="flex items-center gap-4 relative z-10">
+            <div className="text-6xl filter drop-shadow-lg">🍫</div>
+            <div className="text-left">
+              <h3 className="text-amber-100 font-bold text-lg uppercase tracking-wide">
+                Recompensa Desbloqueada
+              </h3>
+              <p className="text-amber-200 text-sm font-medium">
+                Você merece esse chocolate!
+              </p>
+            </div>
+          </div>
+        </Card>
       </div>
     </div>
   );
