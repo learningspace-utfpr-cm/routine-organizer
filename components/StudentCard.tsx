@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import { UserIcon } from "lucide-react";
 import { Button } from "./ui/button";
+import StudentDropDown from "./StudentDropdown";
 
 interface StudentCardProps {
   student: Partial<User> & { isLinked?: boolean };
@@ -65,14 +66,17 @@ const StudentCard = ({ student }: StudentCardProps) => {
 
   return (
     <Card className="flex flex-col justify-between p-6 mb-4 w-80 h-48 rounded-xl shadow-sm">
-      <div className="flex">
-        <UserIcon className="h-8 w-8 text-gray-300 mr-4" />
-        <h2
-          className="text-lg font-bold truncate mb-2"
-          title={student.name || ""}
-        >
-          {student.name || "Sem nome"}
-        </h2>
+      <div className="flex justify-between items-start mb-2">
+        <div className="flex">
+          <UserIcon className="h-8 w-8 text-gray-300 mr-4" />
+          <h2
+            className="text-lg font-bold truncate mb-2"
+            title={student.name || ""}
+          >
+            {student.name || "Sem nome"}
+          </h2>
+        </div>
+        {linked && <StudentDropDown studentId={student.id} />}
       </div>
 
       <p className="text-sm text-gray-600 truncate" title={student.email || ""}>
@@ -90,11 +94,6 @@ const StudentCard = ({ student }: StudentCardProps) => {
         >
           {linked ? "Vinculado" : "Vincular"}
         </Toggle>
-        {linked && (
-          <Button className="h-8" variant="outline" size="sm" asChild>
-            <a href={`/dashboard/professor/${student.id}/rotina`}>Ver rotina</a>
-          </Button>
-        )}
       </div>
     </Card>
   );
