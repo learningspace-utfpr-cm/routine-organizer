@@ -35,9 +35,7 @@ const DayRoutineStatsCard = ({
     <Card>
       <CardHeader className="flex flex-row items-start justify-between gap-4">
         <div>
-          <CardTitle className="text-lg sm:text-xl">
-            Rotina de hoje
-          </CardTitle>
+          <CardTitle className="text-lg sm:text-xl">Rotina de hoje</CardTitle>
           <CardDescription>
             Acompanhamento diário do aluno {studentName || "sem nome"}
           </CardDescription>
@@ -75,18 +73,6 @@ const DayRoutineStatsCard = ({
               </dt>
               <dd className="text-base font-medium">
                 {formatDuration(dayRoutine.totalTimeSeconds)}
-              </dd>
-            </div>
-            <div className="rounded-lg border bg-background p-4">
-              <dt className="text-xs font-semibold text-muted-foreground">
-                Precisou de ajuda?
-              </dt>
-              <dd
-                className={`text-base font-semibold ${
-                  dayRoutine.neededHelp ? "text-amber-600" : "text-emerald-600"
-                }`}
-              >
-                {dayRoutine.neededHelp ? "Sim" : "Não"}
               </dd>
             </div>
           </dl>
